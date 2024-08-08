@@ -26,6 +26,12 @@ const config: webpack.Configuration = {
     ],
   },
   externals: [nodeExternals()],
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 200,
+    poll: 1000,
+    ignored: /node_modules/,
+  },
 };
 
 export default config;

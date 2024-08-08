@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --watch",
     "start:server": "node dist/server.js",
     "start": "npm run build && npm run start:server"
   },
