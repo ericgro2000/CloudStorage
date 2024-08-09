@@ -4,26 +4,25 @@
   "description": "",
   "scripts": {
     "build": "webpack",
-    "start:server": "nodemon --watch src -e ts --exec 'npm run build && node dist/server.js'",
-    "start": "npm run start:server"
+    "start": "nodemon --watch src -e ts --exec 'npm run build && node dist/server.js'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "^22.1.0",
     "@types/webpack-node-externals": "^3.0.4",
-    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "mongoose": "^8.5.2"
   }
 }
