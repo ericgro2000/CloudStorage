@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "start:server": "nodemon --watch src -e ts --exec 'npm run build && node dist/server.js'",
-    "start": "concurrently \"npm run build -- --watch\" \"npm run start:server\""
+    "start": "npm run start:server"
   },
   "keywords": [],
   "author": "",
