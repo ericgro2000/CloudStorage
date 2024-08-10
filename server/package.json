@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "webpack",
-    "start": "nodemon --watch src -e ts --exec 'npm run build && node dist/server.js'"
+    "start": "nodemon --watch src -e ts --exec 'npm run build && node dist/server.js'",
+    "start:server": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
