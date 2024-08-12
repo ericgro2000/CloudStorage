@@ -5,7 +5,7 @@
   "scripts": {
     "nodemon-watch": "nodemon ./src/index.ts",
     "webpack-watch": "webpack --watch --config ./webpack.config.ts",
-    "start-dev": "npm run nodemon-watch & npm run webpack-watch"
+    "start-dev": "npm run webpack-watch & npm run nodemon-watch"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",
     "mongoose": "^8.5.2"
