@@ -2,6 +2,13 @@ import { Router, Request, Response } from "express";
 import { check, validationResult } from "express-validator";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config({ path: path.join(__dirname, "..", "..", ".env") });
+
+const secretKey = process.env.secretKey as string;
 
 const router = Router();
 
@@ -42,5 +49,40 @@ router.post(
     }
   }
 );
+
+router.post("/login", async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isPassValid = bcrypt.compareSync(password, user.password);
+
+    if (!isPassValid) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    const token = jwt.sign({ id: user.id }, secretKey, {
+      expiresIn: "1h",
+    });
+
+    return res.json({
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        diskSpace: user.diskSpace,
+        usedSpace: user.usedSpace,
+        avatar: user.avatar,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    res.send({ message: "Server error", e });
+  }
+});
 
 export default router;
