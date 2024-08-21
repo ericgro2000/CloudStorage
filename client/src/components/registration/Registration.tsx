@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './registration.css'
+//import './registration.css'
 import Input from 'utils/input/Input';
 import { useRegistrationMutation } from 'api/registration'
 
