@@ -13,7 +13,7 @@ const Registration = () => {
             <div className="registration__header">Регистрация</div>
             <Input value={email} setValue={setEmail} type="text" placeholder="Введите email..."/>
             <Input value={password} setValue={setPassword} type="password" placeholder="Введите пароль..."/>
-            <button className="registration__btn" onClick={() => register(email, password)}>Войти</button>
+            <button className="registration__btn" onClick={() => register({email, password})}>Войти</button>
         </div>
     );
 };
