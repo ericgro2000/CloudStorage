@@ -1,6 +1,6 @@
 import React from 'react';
-// import './navbar.css'
-import Logo from './clodyimg.jpeg'
+import './navbar.css'
+import Logo from '../../assets/imgs/clodyimg.jpeg'; 
 import {NavLink} from "react-router-dom";
 const Navbar = () => {
     return (

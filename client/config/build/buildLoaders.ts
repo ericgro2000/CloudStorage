@@ -10,6 +10,14 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
     }
 
     const cssLoader = {
+        test: /\.css$/i,  // Matches only .css files
+        use: [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',  // No need for options unless you need CSS modules for plain .css
+        ],
+    };
+
+    const scssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -49,5 +57,6 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
         svgLoader,
         typescriptLoader,
         cssLoader,
+        scssLoader,
     ]
 }
