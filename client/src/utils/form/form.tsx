@@ -9,6 +9,7 @@ interface FormProps {
   setPassword: (value: string) => void;
   register: ({ email, password }: { email: string; password: string }) => void;
   isLoading: boolean;
+  fields?: Record<string, string>;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -18,28 +19,29 @@ const Form: React.FC<FormProps> = ({
   setPassword,
   register,
   isLoading,
+  fields,
 }) => {
   return (
     <div className="registration">
-      <div className="registration__header">Регистрация</div>
+      <div className="registration__header">{` ${fields?.header}`}</div>
       <Input
         value={email}
         setValue={setEmail}
         type="text"
-        placeholder="Введите email..."
+        placeholder={`Enter ${fields?.firstField}`}
       />
       <Input
         value={password}
         setValue={setPassword}
         type="password"
-        placeholder="Введите пароль..."
+        placeholder={`Enter ${fields?.secondField}`}
       />
       <button
         className="registration__btn"
         onClick={() => register({ email, password })}
         disabled={isLoading}
       >
-        Войти
+        {`${fields?.buttonName}`}
       </button>
     </div>
   );
