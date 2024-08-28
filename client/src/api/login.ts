@@ -4,9 +4,9 @@
 //   reducerPath: "api",
 //   baseQuery: fetchBaseQuery({ baseUrl: "https://3djflp-7000.csb.app" }),
 //   endpoints: (builder) => ({
-//     registration: builder.mutation<any, { email: string; password: string }>({
+//     login: builder.mutation<any, { email: string; password: string }>({
 //       query: (credentials) => ({
-//         url: "api/auth/registration",
+//         url: "api/auth/login",
 //         method: "POST",
 //         body: credentials,
 //       }),
@@ -14,4 +14,4 @@
 //   }),
 // });
 
-// export const { useRegistrationMutation } = apiSlice;
+// export const { useLoginMutation } = apiSlice;
