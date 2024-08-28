@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./auth.css";
-import Input from "utils/input/Input";
 import Form from "utils/form/form";
-import { useLoginMutation } from "api/login";
+import { setUser } from "store/reducers/userReducer";
+import { useDispatch } from "react-redux";
+import { useLoginMutation } from "api/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { data, isLoading, isSuccess }] = useLoginMutation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isSuccess && data) {
-      console.log("Login successful:", data.token);
-      //localStorage.setItem("token", JSON.stringify(data));
+    if (isSuccess) {
+      console.log("Login successful:");
+      console.log("user", data.user);
+      console.log("token", data.token);
+      dispatch(setUser(data.user));
+      localStorage.setItem("token", data.token);
     }
-  }, [isSuccess, data]);
+  }, [isSuccess]);
 
   const fields = {
     header: "Login",

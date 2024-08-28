@@ -1,16 +1,31 @@
-interface userReducerAction {
-    type:string
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface UserState {
+  currentUser: Record<string, any>;
+  isAuth: boolean;
 }
 
-const defaultState = {
-    currentUser: {},
-    isAuth: false
-}
+const initialState: UserState = {
+  currentUser: {},
+  isAuth: false,
+};
 
-export default function userReducer(state = defaultState, action:userReducerAction) {
-    switch (action.type) {
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setUser(state, action: PayloadAction<Record<string, any>>) {
+      state.currentUser = action.payload;
+      state.isAuth = true;
+    },
+    logout(state) {
+      localStorage.removeItem("token");
+      state.currentUser = {};
+      state.isAuth = false;
+    },
+  },
+});
 
-        default:
-            return state
-    }
-}
+export const { setUser, logout } = userSlice.actions;
+
+export default userSlice.reducer;

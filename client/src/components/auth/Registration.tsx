@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./auth.css";
-import Input from "utils/input/Input";
-import { useRegistrationMutation } from "api/registration";
 import Form from "utils/form/form";
+import { useRegistrationMutation } from "api/auth";
 
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, { isLoading, isSuccess }] = useRegistrationMutation();
 
-  // useEffect(() => {
-  //   console.log(isSuccess);
-  //   if (isSuccess) {
-  //     // Redirect to another route after a successful fetch
-  //     alert("happily loggined!");
-  //   }
-  // }, [isSuccess]);
+  useEffect(() => {
+    console.log(isSuccess);
+    if (isSuccess) {
+      // Redirect to another route after a successful fetch
+      alert("happily loggined!");
+    }
+  }, [isSuccess]);
   const fields = {
     header: "Registration",
     firstField: "email",
