@@ -23,7 +23,7 @@ const Navbar = () => {
           </>
         ) : (
           <div className="navbar__login" onClick={() => dispatch(logout())}>
-            <NavLink to="/registration">Registration</NavLink>
+            <NavLink to="/login">Logout</NavLink>
           </div>
         )}
       </div>
