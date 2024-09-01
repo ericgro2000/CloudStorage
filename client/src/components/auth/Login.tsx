@@ -5,6 +5,13 @@ import { setUser } from "store/reducers/userReducer";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "api/auth";
 
+const fields = {
+  header: "Login",
+  firstField: "email",
+  secondField: "password",
+  buttonName: "Login",
+};
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,13 +27,6 @@ const Login = () => {
       localStorage.setItem("token", data.token);
     }
   }, [isSuccess]);
-
-  const fields = {
-    header: "Login",
-    firstField: "email",
-    secondField: "password",
-    buttonName: "Login",
-  };
 
   return (
     <div className="registration">

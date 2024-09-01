@@ -3,6 +3,13 @@ import "./auth.css";
 import Form from "utils/form/form";
 import { useRegistrationMutation } from "api/auth";
 
+const fields = {
+  header: "Registration",
+  firstField: "email",
+  secondField: "password",
+  buttonName: "Register",
+};
+
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,12 +22,6 @@ const Registration = () => {
       alert("happily loggined!");
     }
   }, [isSuccess]);
-  const fields = {
-    header: "Registration",
-    firstField: "email",
-    secondField: "password",
-    buttonName: "Register",
-  };
 
   return (
     <div className="registration">
