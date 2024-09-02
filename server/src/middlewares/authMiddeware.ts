@@ -16,25 +16,31 @@ const authMiddleware = (
   next: NextFunction
 ) => {
   if (req.method === "OPTIONS") {
+    console.log("0");
     return next();
   }
 
   try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-      return res.status(401).json({ message: "Auth error" });
-    }
+    // const auth = req.body.token;
+    // if (!auth) {
+    //   console.log("1");
+    //   return res.status(401).json({ message: "Auth error" });
+    // }
 
-    const token = authHeader.split(" ")[1];
+    const token = req.body.jwtkey;
+    console.log(req.body);
     if (!token) {
-      return res.status(401).json({ message: "Auth error" });
+      console.log(token);
+      return res.status(401).json({ message: "Token error", token });
     }
 
     const decoded = jwt.verify(token, secretKey);
     req.user = decoded;
+    console.log("3");
     next();
   } catch (e) {
-    return res.status(401).json({ message: "Auth error" });
+    console.log("4");
+    return res.status(401).json({ message: "Unexpected error", e: req.body });
   }
 };
 

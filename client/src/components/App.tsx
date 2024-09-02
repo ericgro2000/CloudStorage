@@ -12,7 +12,7 @@ import { setUser } from "store/reducers/userReducer";
 const App: React.FC = () => {
   const isAuth = useAppSelector((state) => state.userReducer.isAuth);
   const dispatch = useAppDispatch();
-  const [auth, { data, isLoading, isSuccess }] = useAuthMutation();
+  const [auth, { data, isLoading, isSuccess, error }] = useAuthMutation();
 
   useEffect(() => {
     const jwtkey = localStorage.getItem("token");
@@ -26,9 +26,11 @@ const App: React.FC = () => {
     if (data) {
       dispatch(setUser(data.user));
     }
-  }, [isSuccess, data]);
+  }, [isSuccess]);
 
-  console.log(isSuccess);
+  console.log("success", isSuccess);
+  console.log("error", error);
+  console.log("data", data);
   // useEffect(() => {
   //   dispatch(auth("a"));
   // }, []);

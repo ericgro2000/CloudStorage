@@ -5,9 +5,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import path from "path";
 import dotenv from "dotenv";
-import authMiddleware, {
-  AuthenticatedRequest,
-} from "../middlewares/authMiddeware";
+// import authMiddleware, {
+//   AuthenticatedRequest,
+// } from "../middlewares/authMiddeware";
 
 dotenv.config({ path: path.join(__dirname, "..", "..", ".env") });
 
@@ -90,17 +90,18 @@ router.post("/login", async (req: Request, res: Response) => {
 
 export default router;
 
-router.get(
+router.post(
   "/auth",
-  authMiddleware,
-  async (req: AuthenticatedRequest, res: Response) => {
+  // authMiddleware,
+  async (req: Request, res: Response) => {
     try {
-      const userId = req.user.id;
-      if (!userId) {
+      const jwtkey = req.body.jwtkey;
+      const decoded = jwt.verify(jwtkey, secretKey);
+      if (!decoded || typeof decoded === "string") {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const user = await User.findOne({ _id: userId });
+      const user = await User.findOne({ _id: decoded.id });
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -121,7 +122,10 @@ router.get(
       });
     } catch (e) {
       console.error(e);
-      return res.status(500).json({ message: "Server error" });
+      return res.status(500).json({
+        message: "Server error",
+        e: jwt.verify(req.body.jwtkey, secretKey),
+      });
     }
   }
 );
