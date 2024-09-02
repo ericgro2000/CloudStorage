@@ -4,7 +4,7 @@ import { loginReturn } from "./Types/login";
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://hxmmvl-7000.csb.app" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://q5xqc2-7000.csb.app" }),
   endpoints: (builder) => ({
     // Registration mutation
     registration: builder.mutation<
