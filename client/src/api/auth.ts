@@ -25,7 +25,15 @@ export const apiSlice = createApi({
         body: credentials,
       }),
     }),
+    auth: builder.mutation<loginReturn, { jwtkey: string }>({
+      query: (credentials) => ({
+        url: "api/auth/auth",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
   }),
 });
 
-export const { useRegistrationMutation, useLoginMutation } = apiSlice;
+export const { useRegistrationMutation, useLoginMutation, useAuthMutation } =
+  apiSlice;
